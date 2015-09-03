@@ -149,7 +149,7 @@ class LoginDialog(QtGui.QDialog):
         widget.setEnabled(False)
         widget.setToolTip(tooltip_text)
 
-    def _set_login_message(self, message):
+    def set_message(self, message):
         """
         Set the message in the dialog.
         :param message: Message to display in the dialog.
