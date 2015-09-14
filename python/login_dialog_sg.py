@@ -149,6 +149,13 @@ class LoginDialog(QtGui.QDialog):
         widget.setEnabled(False)
         widget.setToolTip(tooltip_text)
 
+    def set_message(self, message):
+        """
+        Set the message in the dialog. For compatibility with non sg dialog.
+        :param message: Message to display in the dialog.
+        """
+        self._set_login_message(message)
+
     def _set_login_message(self, message):
         """
         Set the message in the dialog.
@@ -254,9 +261,7 @@ class LoginDialog(QtGui.QDialog):
             # authentication did not succeed
             self._set_error_message(error_label, "%s:  %s" % (e[0], e[1]))
             return
-        else:
-            # END OF THE CHANGES TO BE COMPATIBLE WITH THE LOGIN FRAMEWORK
-            self.accept()
+        # END OF THE CHANGES TO BE COMPATIBLE WITH THE LOGIN FRAMEWORK
         finally:
             # restore the cursor
             QtGui.QApplication.restoreOverrideCursor()
@@ -276,6 +281,8 @@ class LoginDialog(QtGui.QDialog):
         except LoginError:
             # if saving the settings does not work, simply continue without them saved
             pass
+
+        self.accept()
         # END OF THE CHANGES TO BE COMPATIBLE WITH THE LOGIN FRAMEWORK
 
     def _verify_2fa_pressed(self):
