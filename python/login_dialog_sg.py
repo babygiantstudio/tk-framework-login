@@ -154,14 +154,7 @@ class LoginDialog(QtGui.QDialog):
         Set the message in the dialog. For compatibility with non sg dialog.
         :param message: Message to display in the dialog.
         """
-        self._set_login_message(message)
-
-    def _set_login_message(self, message):
-        """
-        Set the message in the dialog.
-        :param message: Message to display in the dialog.
-        """
-        self.ui.message.setText(message)
+        self._set_error_message(self.ui.message, message)
 
     def exec_(self):
         """
